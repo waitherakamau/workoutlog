@@ -8,4 +8,9 @@
     <string name="confirm">Confirm</string>
     <string name="signup">Signup</string>
     <string name="already_have_an_account_login">ALready have an account Login</string>
+    <string name="profile">profile</string>
+    <string name="track">track</string>
+    <string name="profile_menu">profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
