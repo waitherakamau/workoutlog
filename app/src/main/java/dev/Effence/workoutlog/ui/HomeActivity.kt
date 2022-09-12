@@ -1,21 +1,27 @@
-package dev.Effence.workoutlog
+package dev.Effence.workoutlog.ui
 
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainer
-import androidx.fragment.app.FragmentContainerView
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import dev.Effence.workoutlog.R
 import dev.Effence.workoutlog.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
+    lateinit var sharedPrefs:SharedPreferences
 //    lateinit var fcvHome: FragmentContainerView
 //    lateinit var bnvHome: BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     binding=ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+    binding.tvLogout.setOnClickListener {
+        startActivity(Intent(this,LoginActivity::class.java))
+        logoutRequest()
+
+    }
         castViews()
         setBottomNav()
     }
@@ -38,8 +44,11 @@ class HomeActivity : AppCompatActivity() {
                     val transaction = supportFragmentManager.beginTransaction().replace(R.id.fcvHome, TrackFragment())
                     true
                 }
-                R.id.profile-> {
-                    supportFragmentManager.beginTransaction().replace(R.id.fcvHome,ProfileFragment()).commit()
+                R.id.profile -> {
+                    supportFragmentManager.beginTransaction().replace(
+                        R.id.fcvHome,
+                        ProfileFragment()
+                    ).commit()
                     true
 
                 }
@@ -49,5 +58,8 @@ class HomeActivity : AppCompatActivity() {
 
         }
 
+    }
+    fun logoutRequest(){
+        sharedPrefs.edit().clear().commit()
     }
 }
